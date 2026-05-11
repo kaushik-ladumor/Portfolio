@@ -5,7 +5,7 @@ A sleek, high-contrast, and fully responsive personal portfolio website built wi
 ---
 
 ## 🚀 Live Demo
-**Check it out here:** [👉https://kaushik-ladumor-portfolio.netlify.app/👈](#)
+**Check it out here:** [👉[https://kaushik-ladumor-portfolio.netlify.app/](https://kaushik-ladumor-portfolio.netlify.app/)👈](#)
 
 ---
 
