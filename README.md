@@ -2,8 +2,6 @@
 
 A responsive personal portfolio built with React and Vite. It presents Kaushik's profile, skills, professional experience, selected projects, education, and contact details in a dark, lime-accented design.
 
-## Features
-
 ## Live demo
 
 [kaushik-ladumor-portfolio.netlify.app](https://kaushik-ladumor-portfolio.netlify.app/)
