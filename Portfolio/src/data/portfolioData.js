@@ -21,7 +21,7 @@ export const experience = [
   {
     period: "Aug 2026 – Present",
     role: "Software Developer",
-    company: "Aerocraft",
+    company: "Aerocraft Engineering (I) Pvt. Ltd.",
     location: "Ahmedabad, Gujarat",
     highlights: [
       "Own an HR module within a product-level platform.",

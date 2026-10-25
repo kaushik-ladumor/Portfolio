@@ -39,7 +39,7 @@ const getIcon = (name) => {
 };
 
 const SkillPill = ({ name }) => (
-  <div className="reveal group relative inline-flex items-center gap-2 rounded-lg border border-slate-700/80 bg-slate-900/55 px-3.5 py-2 transition-all duration-200 hover:border-orange-500/50 hover:bg-orange-500/5">
+  <div className="reveal group relative inline-flex min-h-10 w-full min-w-0 items-center gap-2 rounded-lg border border-slate-700/80 bg-slate-900/55 px-3 py-2 transition-all duration-200 hover:border-orange-500/50 hover:bg-orange-500/5 sm:w-auto sm:px-3.5">
     <span className="text-orange-500/50 group-hover:text-orange-400 transition-colors">
       {getIcon(name)}
     </span>
@@ -66,7 +66,7 @@ const Skills = () => {
                 {category}
               </h3>
               
-              <div className="flex flex-wrap gap-3">
+              <div className="grid grid-cols-2 gap-2.5 sm:flex sm:flex-wrap sm:gap-3">
                 {categorySkills.map((skill) => (
                   <SkillPill key={skill} name={skill} />
                 ))}

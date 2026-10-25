@@ -46,10 +46,23 @@ const Contact = () => {
 
     setLoading(true);
 
-    emailjs.sendForm(
+    const formData = new FormData(formRef.current);
+    const name = String(formData.get('name')).trim();
+    const email = String(formData.get('email')).trim();
+    const message = String(formData.get('message')).trim();
+
+    emailjs.send(
       EMAILJS_SERVICE_ID,
       EMAILJS_TEMPLATE_ID,
-      formRef.current,
+      {
+        title: String(formData.get('title')),
+        to_email: personalInfo.email,
+        name,
+        from_name: name,
+        email,
+        reply_to: email,
+        message,
+      },
       EMAILJS_PUBLIC_KEY
     )
       .then(() => {

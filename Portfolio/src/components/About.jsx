@@ -38,15 +38,15 @@ const About = () => {
               <StatCard label="Current degree" value="BTech" />
             </div>
 
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              <span className="mr-1 text-sm text-slate-500">Find me online</span>
+            <div className="mt-6 grid grid-cols-3 items-center gap-2 sm:flex sm:flex-wrap sm:gap-3">
+              <span className="col-span-full mr-1 text-sm text-slate-500 sm:col-span-1">Find me online</span>
               {personalInfo.github && (
                 <a
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Visit Kaushik on GitHub"
-                  className="inline-flex items-center gap-2 rounded-lg border border-slate-700 px-3 py-2 text-sm text-slate-300 transition-colors hover:border-orange-400/50 hover:text-orange-300"
+                  className="inline-flex min-w-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-slate-700 px-2 py-2.5 text-xs text-slate-300 transition-colors hover:border-orange-400/50 hover:text-orange-300 sm:gap-2 sm:px-3 sm:py-2 sm:text-sm"
                 >
                   <Github size={16} /> GitHub
                 </a>
@@ -57,7 +57,7 @@ const About = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Visit Kaushik on LinkedIn"
-                  className="inline-flex items-center gap-2 rounded-lg border border-slate-700 px-3 py-2 text-sm text-slate-300 transition-colors hover:border-orange-400/50 hover:text-orange-300"
+                  className="inline-flex min-w-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-slate-700 px-2 py-2.5 text-xs text-slate-300 transition-colors hover:border-orange-400/50 hover:text-orange-300 sm:gap-2 sm:px-3 sm:py-2 sm:text-sm"
                 >
                   <Linkedin size={16} /> LinkedIn
                 </a>
@@ -68,7 +68,7 @@ const About = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Visit Kaushik on LeetCode"
-                  className="inline-flex items-center gap-2 rounded-lg border border-slate-700 px-3 py-2 text-sm text-slate-300 transition-colors hover:border-orange-400/50 hover:text-orange-300"
+                  className="inline-flex min-w-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-slate-700 px-2 py-2.5 text-xs text-slate-300 transition-colors hover:border-orange-400/50 hover:text-orange-300 sm:gap-2 sm:px-3 sm:py-2 sm:text-sm"
                 >
                   <ExternalLink size={16} /> LeetCode
                 </a>
