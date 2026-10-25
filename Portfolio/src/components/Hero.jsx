@@ -1,71 +1,63 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { personalInfo } from '../data/portfolioData';
+import { ArrowRight, ArrowUpRight, Download } from 'lucide-react';
 
 const Hero = () => {
-  const [displayText, setDisplayText] = useState('');
-  const fullText = personalInfo.tagline;
-  const typingSpeed = 50; // ms per character
-
-  useEffect(() => {
-    let index = 0;
-    const interval = setInterval(() => {
-      if (index <= fullText.length) {
-        setDisplayText(fullText.substring(0, index));
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, typingSpeed);
-
-    return () => clearInterval(interval);
-  }, [fullText]);
-
-  const scrollTo = (id) => {
-    const el = document.getElementById(id);
-    if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
-  };
-
   return (
-    <section id="home" className="relative flex min-h-screen w-full flex-col items-center justify-start md:justify-center bg-slate-900 px-4 pt-20 md:pt-0 transition-all duration-300">
-      
-      {/* Background patterns */}
-      <div className="bg-grid-pattern absolute inset-0 opacity-20 pointer-events-none"></div>
-      
-      {/* Floating Teal Orbs */}
-      <div className="orb top-1/4 left-1/4 animate-float"></div>
-      <div className="orb bottom-1/4 right-1/4 animate-float [animation-delay:2s]"></div>
-
-      <div className="z-10 flex flex-col items-center text-center">
-        {/* Animated Name */}
-        <h1 className="animate-fadeIn relative font-bold text-slate-50 opacity-0 [animation-delay:0.3s] text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
-          Hi, I am <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent">{personalInfo.name.split(' ')[0]}</span>
-        </h1>
-
-        {/* Typewriter Tagline */}
-        <p className="mt-4 min-h-[3rem] max-w-3xl text-sm font-medium leading-relaxed text-slate-400 sm:text-base md:text-lg lg:text-xl typewriter-cursor pr-1">
-          {displayText}
-        </p>
-
-        {/* CTA Buttons */}
-        <div className="animate-fadeIn mt-8 flex flex-col items-center gap-4 opacity-0 [animation-delay:0.8s] sm:flex-row">
-          <button 
-            onClick={() => scrollTo('projects')}
-            className="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-orange-500 px-8 py-3.5 font-bold text-slate-900 transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-orange-500/20"
-          >
-            <span className="relative">View Projects</span>
-          </button>
-          
-          <a 
-            href={personalInfo.resumeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border-2 border-orange-500 bg-transparent px-8 py-3.5 font-bold text-orange-400 transition-all duration-300 hover:bg-orange-500/10 hover:scale-105 active:scale-95"
-          >
-            <span className="relative">Download CV</span>
-          </a>
+    <section id="home" className="relative flex min-h-[min(880px,100svh)] w-full items-center overflow-hidden px-5 pb-16 pt-28 sm:px-8 lg:px-12">
+      <div className="bg-grid-pattern pointer-events-none absolute inset-0 opacity-70" />
+      <div className="orb -right-24 top-24 animate-float opacity-70" />
+      <div className="relative z-10 mx-auto grid w-full min-w-0 max-w-7xl items-center gap-10 lg:grid-cols-[1.1fr_.9fr] lg:gap-20">
+        <div className="animate-fadeIn min-w-0">
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-800/70 px-4 py-2 text-xs font-semibold tracking-wide text-slate-300">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-500 opacity-40" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-orange-500" />
+            </span>
+            DESIGN <span className="text-slate-600">·</span> BUILD <span className="text-slate-600">·</span> SHIP
+          </div>
+          <p className="hero-meta mb-4 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm tracking-wide text-orange-400">
+            <span>{personalInfo.location}</span>
+            <span aria-hidden="true" className="text-slate-600">/</span>
+            <span>{personalInfo.tagline.split('|')[0].trim()}</span>
+          </p>
+          <h1 className="max-w-3xl text-[clamp(2.6rem,5vw,4.5rem)] font-semibold leading-[1.04] tracking-[-.04em] text-slate-50">
+            <span className="typewriter-line">Thoughtful code.</span>
+            <span className="typewriter-line typewriter-line-accent mt-2 text-orange-400">Useful impact.</span>
+          </h1>
+          <p className="mt-6 max-w-xl text-base leading-7 text-slate-400 sm:text-[1.05rem]">
+            I’m {personalInfo.name}, a full-stack developer focused on building dependable web applications and intelligent product features.
+          </p>
+          <div className="hero-actions mt-8 flex min-w-0 flex-col gap-3 sm:flex-row">
+            <a href="#projects" className="group inline-flex min-h-12 w-full min-w-0 items-center justify-center gap-3 rounded-full bg-orange-500 px-6 font-bold text-slate-900 transition-transform hover:-translate-y-0.5 sm:w-auto">
+              Explore my work <ArrowRight size={17} className="transition-transform group-hover:translate-x-1" />
+            </a>
+            <a href={`mailto:${personalInfo.email}`} className="inline-flex min-h-12 w-full min-w-0 items-center justify-center gap-2 rounded-full border border-slate-700 px-6 font-semibold text-slate-200 transition-colors hover:border-orange-500/60 hover:text-orange-400 sm:w-auto">
+              Let’s talk <ArrowUpRight size={17} />
+            </a>
+            <a href={personalInfo.resumeUrl} download="Kaushik_Ladumor_Resume.pdf" className="inline-flex min-h-12 w-full min-w-0 items-center justify-center gap-2 rounded-full border border-slate-700 px-6 font-semibold text-slate-200 transition-colors hover:border-orange-500/60 hover:text-orange-400 sm:w-auto">
+              Download resume <Download size={16} />
+            </a>
+          </div>
         </div>
-      </div>
 
+        <figure className="hero-portrait animate-portrait-enter relative mx-auto aspect-[4/5] w-full max-w-[25rem] overflow-hidden rounded-[2rem] border border-slate-700/80 shadow-[0_32px_100px_-44px_rgba(200,241,105,.3)]">
+          <img
+            src="/kaushik-photo.jpg"
+            alt={`Portrait of ${personalInfo.name}`}
+            fetchPriority="high"
+            width="768"
+            height="1152"
+            className="profile-photo h-full w-full object-cover object-[center_18%]"
+          />
+          <div className="hero-portrait-shade absolute inset-0" />
+          <figcaption className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+            <p className="mb-2 font-mono text-xs uppercase tracking-[.18em] text-orange-300">Full-stack developer · AI</p>
+            <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">{personalInfo.name}</h2>
+            <p className="mt-2 text-sm text-slate-300">{personalInfo.location}</p>
+          </figcaption>
+        </figure>
+      </div>
     </section>
   );
 };

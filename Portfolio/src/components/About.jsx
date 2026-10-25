@@ -1,41 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { personalInfo, projects, skills } from '../data/portfolioData';
 import { Github, Linkedin, ExternalLink } from 'lucide-react';
 
-const StatCard = ({ label, targetValue, suffix = '+' }) => {
-  const [count, setCount] = useState(0);
-  const cardRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        let start = 0;
-        const duration = 2000;
-        const increment = targetValue / (duration / 16);
-        const timer = setInterval(() => {
-          start += increment;
-          if (start >= targetValue) {
-            setCount(targetValue);
-            clearInterval(timer);
-          } else {
-            setCount(Math.round(start));
-          }
-        }, 16);
-      }
-    }, { threshold: 0.5 });
-
-    if (cardRef.current) observer.observe(cardRef.current);
-    return () => observer.disconnect();
-  }, [targetValue]);
-
+const StatCard = ({ label, value }) => {
   return (
-    <div ref={cardRef} className="reveal flex flex-col items-center justify-center rounded-2xl bg-slate-800/50 p-6 border border-slate-700/30 hover:border-orange-500/30 transition-all hover:scale-105">
-      <h4 className="text-3xl font-bold text-orange-400">
-        {count}{suffix}
-      </h4>
-      <p className="mt-1 text-sm font-medium uppercase tracking-widest text-slate-400">
-        {label}
-      </p>
+    <div className="rounded-2xl border border-slate-700/70 bg-slate-800/50 p-5 transition-colors hover:border-orange-500/40">
+      <p className="text-2xl font-extrabold tracking-tight text-orange-400">{value}</p>
+      <p className="mt-2 text-xs font-semibold uppercase tracking-wider text-slate-500">{label}</p>
     </div>
   );
 };
@@ -46,78 +17,62 @@ const About = () => {
 
   return (
     <section id="about" className="relative w-full py-10 px-4 sm:px-8 lg:px-16 bg-slate-900 overflow-hidden">
-      <div className="mx-auto max-w-6xl">
-        {/* Title */}
-        <div className="reveal flex items-center justify-center gap-4 mb-16">
-          <div className="h-0.5 w-12 bg-orange-500"></div>
-          <h2 className="text-3xl font-bold sm:text-4xl text-white">About Me</h2>
-          <div className="h-0.5 w-12 bg-orange-500"></div>
+      <div className="mx-auto max-w-7xl">
+        <div className="section-heading section-heading-centered reveal">
+          <span className="section-kicker">A little about me</span>
+          <h2 className="section-title">Turning ideas into <span className="section-title-accent">reliable web apps.</span></h2>
         </div>
 
-        <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 items-center">
-          {/* Avatar Area */}
-          <div className="reveal flex flex-col items-center">
-            <div className="relative group">
-              {/* Outer animated ring */}
-              <div className="absolute -inset-4 rounded-full bg-gradient-to-tr from-orange-500/20 to-orange-500/50 blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-spin-slow"></div>
-              
-              {/* Avatar Initial Circle */}
-              <div className="relative flex h-48 w-48 items-center justify-center rounded-full bg-slate-800 border-2 border-orange-500 shadow-2xl overflow-hidden">
-                <span className="text-7xl font-bold tracking-tighter text-orange-400">
-                  {personalInfo.name.split(' ').map(n=>n[0]).join('')}
-                </span>
-              </div>
-            </div>
-
-            {/* Social Links */}
-            <div className="mt-10 flex gap-6">
-              {personalInfo.github && (
-                <a 
-                  href={personalInfo.github} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="group p-3 rounded-full bg-slate-800 border border-slate-700 hover:border-orange-500 hover:bg-orange-500/10 transition-all duration-300 transform hover:scale-110 active:scale-95"
-                >
-                  <Github size={24} className="text-slate-400 group-hover:text-orange-400" />
-                </a>
-              )}
-              {personalInfo.linkedin && (
-                <a 
-                  href={personalInfo.linkedin} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="group p-3 rounded-full bg-slate-800 border border-slate-700 hover:border-teal-500 hover:bg-teal-500/10 transition-all duration-300 transform hover:scale-110 active:scale-95"
-                >
-                  <Linkedin size={24} className="text-slate-400 group-hover:text-teal-400" />
-                </a>
-              )}
-              {personalInfo.leetcode && (
-                <a 
-                  href={personalInfo.leetcode} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="group p-3 rounded-full bg-slate-800 border border-slate-700 hover:border-teal-500 hover:bg-teal-500/10 transition-all duration-300 transform hover:scale-110 active:scale-95"
-                >
-                  <ExternalLink size={24} className="text-slate-400 group-hover:text-teal-400" />
-                </a>
-              )}
-            </div>
-          </div>
-
-          {/* Bio Area */}
+        <div className="mx-auto max-w-4xl">
           <div className="reveal">
-            <h3 className="text-2xl font-semibold text-slate-100 mb-6 flex items-center gap-2">
-              Building Scalable & Data-Driven Solutions
+            <h3 className="mb-4 text-xl font-semibold tracking-tight text-slate-100 sm:text-2xl">
+              Full-stack development, from idea to launch.
             </h3>
-            <p className="text-slate-400 text-lg leading-relaxed mb-10">
+            <p className="mb-7 max-w-3xl text-[.95rem] leading-7 text-slate-400 sm:text-base">
               {personalInfo.bio}
             </p>
 
-            {/* Quick Stats Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              <StatCard label="Projects Built" targetValue={projCount} />
-              <StatCard label="Technologies" targetValue={techCount} />
-              <StatCard label="Pursuing BTech" targetValue={2026} suffix="" />
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+              <StatCard label="Selected projects" value={String(projCount).padStart(2, '0')} />
+              <StatCard label="Tools & technologies" value={`${techCount}+`} />
+              <StatCard label="Current degree" value="BTech" />
+            </div>
+
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <span className="mr-1 text-sm text-slate-500">Find me online</span>
+              {personalInfo.github && (
+                <a
+                  href={personalInfo.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit Kaushik on GitHub"
+                  className="inline-flex items-center gap-2 rounded-lg border border-slate-700 px-3 py-2 text-sm text-slate-300 transition-colors hover:border-orange-400/50 hover:text-orange-300"
+                >
+                  <Github size={16} /> GitHub
+                </a>
+              )}
+              {personalInfo.linkedin && (
+                <a
+                  href={personalInfo.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit Kaushik on LinkedIn"
+                  className="inline-flex items-center gap-2 rounded-lg border border-slate-700 px-3 py-2 text-sm text-slate-300 transition-colors hover:border-orange-400/50 hover:text-orange-300"
+                >
+                  <Linkedin size={16} /> LinkedIn
+                </a>
+              )}
+              {personalInfo.leetcode && (
+                <a
+                  href={personalInfo.leetcode}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit Kaushik on LeetCode"
+                  className="inline-flex items-center gap-2 rounded-lg border border-slate-700 px-3 py-2 text-sm text-slate-300 transition-colors hover:border-orange-400/50 hover:text-orange-300"
+                >
+                  <ExternalLink size={16} /> LeetCode
+                </a>
+              )}
             </div>
           </div>
         </div>

@@ -1,40 +1,30 @@
 import React from 'react';
 import { useScrollSpy } from '../hooks/useScrollSpy';
+import { personalInfo } from '../data/portfolioData';
 
 const Navbar = () => {
-  const sections = ['home', 'about', 'skills', 'projects', 'education', 'contact'];
+  const sections = ['home', 'about', 'skills', 'experience', 'projects', 'education', 'contact'];
   const activeId = useScrollSpy(sections);
-
-  const handleClick = (e, id) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      window.scrollTo({
-        top: element.offsetTop - 80,
-        behavior: 'smooth',
-      });
-    }
-  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 hidden md:block">
-      <div className="glass mx-auto mt-4 flex max-w-4xl items-center justify-between rounded-full border border-slate-700/50 px-8 py-3 transition-all duration-300">
-        {/* Monogram / Logo */}
+      <div className="glass mx-auto mt-4 flex max-w-6xl items-center justify-between rounded-full border border-slate-700/70 px-7 py-3 transition-all duration-300">
+        {/* Brand */}
         <a 
           href="#home" 
-          onClick={(e) => handleClick(e, 'home')}
-          className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent hover:scale-110 transition-transform cursor-pointer"
+          aria-label={`${personalInfo.name} home`}
+          className="whitespace-nowrap text-lg font-bold tracking-tight text-slate-50 transition-colors hover:text-orange-400 lg:text-xl"
         >
-          KL
+          {personalInfo.name}<span className="text-orange-400">.</span>
         </a>
 
         {/* Desktop Links */}
-        <ul className="flex items-center space-x-8">
+        <ul className="flex items-center gap-7">
           {sections.map((section) => (
             <li key={section}>
               <a
                 href={`#${section}`}
-                onClick={(e) => handleClick(e, section)}
+                aria-current={activeId === section ? 'location' : undefined}
                 className={`group relative text-sm font-medium capitalize transition-colors duration-300 ${
                   activeId === section ? 'text-orange-400' : 'text-slate-400 hover:text-slate-200'
                 }`}

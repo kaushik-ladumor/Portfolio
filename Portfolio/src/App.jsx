@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import Loader from './components/Loader';
+import React from 'react';
 import Navbar from './components/Navbar';
 import MobileNav from './components/MobileNav';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
+import Experience from './components/Experience';
 import Education from './components/Education';
 import Contact from './components/Contact';
 import BackToTop from './components/BackToTop';
@@ -13,35 +13,18 @@ import { personalInfo } from './data/portfolioData';
 import { useIntersectionObserver } from './hooks/useIntersectionObserver';
 
 const App = () => {
-  const [loading, setLoading] = useState(true);
-
-  // Initialize Intersection Observer hook for scroll reveals
   useIntersectionObserver('.reveal', 'reveal-visible');
-
-  useEffect(() => {
-    // Show loader for 1.8 seconds then reveal contents
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1800);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <>
-      {loading && <Loader />}
-      
-      {/* Portfolo Content Container */}
-      <div 
-        className={`bg-slate-900 transition-opacity duration-1000 ${
-          loading ? 'opacity-0' : 'opacity-100'
-        }`}
-      >
+      <div className="bg-slate-900">
         <Navbar />
         
         <main className="min-h-screen">
           <Hero />
           <About />
           <Skills />
+          <Experience />
           <Projects />
           <Education />
           <Contact />

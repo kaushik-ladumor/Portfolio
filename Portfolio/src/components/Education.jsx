@@ -3,48 +3,40 @@ import { education } from '../data/portfolioData';
 
 const EducationEntry = ({ entry }) => {
   return (
-    <div className="reveal flex relative pb-12 last:pb-0 group">
-      {/* Timeline Line */}
-      <div className="absolute left-4 top-2 h-full w-0.5 bg-slate-800 group-last:h-0"></div>
-      
-      {/* Timeline Dot */}
-      <div className="z-10 flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 border-2 border-orange-500 shadow-lg shadow-orange-500/20 group-hover:scale-125 transition-transform duration-300">
-        <div className="h-2 w-2 rounded-full bg-orange-500 animate-pulse"></div>
+    <article className="education-entry reveal relative grid grid-cols-1 gap-2 border-b border-slate-700/70 py-5 first:pt-0 last:border-b-0 sm:grid-cols-[7rem_minmax(0,1fr)] sm:gap-7">
+      <div className="relative">
+        <span className="education-dot absolute left-0 top-1.5 h-3 w-3 rounded-full border-2 border-orange-400 bg-slate-900" />
+        <span className="education-year pl-6 font-mono text-xs font-medium text-orange-300 sm:text-sm">{entry.year}</span>
       </div>
-
-      {/* Content */}
-      <div className="ml-10 pt-1 group-hover:translate-x-3 transition-transform duration-300">
-        <span className="inline-block rounded-full bg-orange-500/10 px-3 py-1 text-[10px] font-bold text-orange-400 border border-orange-500/20 uppercase tracking-widest mb-3">
-          {entry.year}
-        </span>
-        <h3 className="text-2xl font-bold text-white mb-1 group-hover:text-orange-400 transition-colors">
+      <div className="min-w-0 pb-1">
+        <h3 className="text-lg font-semibold leading-snug tracking-tight text-slate-50 sm:text-xl">
           {entry.degree}
         </h3>
-        <p className="text-slate-100 font-semibold text-lg">{entry.university}</p>
-        <p className="text-slate-400 text-sm mt-1">{entry.institute}</p>
-        <p className="mt-4 text-sm font-medium text-orange-400/80 bg-orange-500/5 inline-block px-3 py-1.5 rounded-lg border border-orange-500/10">
-          Result: <span className="font-bold text-orange-400">{entry.score}</span>
+        <p className="mt-1.5 text-sm font-medium text-slate-200 sm:text-base">{entry.university}</p>
+        <p className="mt-1 text-sm leading-6 text-slate-400">{entry.institute}</p>
+        <p className="mt-3 text-sm text-slate-400">
+          Result <span className="px-1.5 text-slate-600">·</span><span className="font-medium text-slate-200">{entry.score}</span>
         </p>
       </div>
-    </div>
+    </article>
   );
 };
 
 const Education = () => {
   return (
     <section id="education" className="relative w-full py-10 px-4 sm:px-8 lg:px-16 bg-slate-900">
-      <div className="mx-auto max-w-4xl">
-        {/* Title */}
-        <div className="reveal flex items-center justify-start gap-4 mb-20 ml-2">
-          <div className="h-0.5 w-16 bg-orange-500"></div>
-          <h2 className="text-4xl font-bold text-white">Educational Path</h2>
+      <div className="mx-auto max-w-7xl">
+        <div className="section-heading section-heading-centered reveal">
+          <span className="section-kicker">Where I’ve learned</span>
+          <h2 className="section-title">Education & <span className="section-title-accent">growth.</span></h2>
         </div>
 
-        <div className="flex flex-col">
+        <div className="mx-auto flex max-w-3xl flex-col">
           {education.map((entry, index) => (
             <EducationEntry key={index} entry={entry} />
           ))}
         </div>
+
       </div>
     </section>
   );

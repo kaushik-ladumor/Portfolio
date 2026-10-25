@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 
 export const useScrollSpy = (selectors) => {
   const [activeId, setActiveId] = useState('');
+  const selectorKey = selectors.join(',');
 
   useEffect(() => {
+    const sectionIds = selectorKey.split(',');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -15,18 +17,18 @@ export const useScrollSpy = (selectors) => {
       threshold: 0,
     });
 
-    selectors.forEach(id => {
+    sectionIds.forEach(id => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
 
     return () => {
-      selectors.forEach(id => {
+      sectionIds.forEach(id => {
         const el = document.getElementById(id);
         if (el) observer.unobserve(el);
       });
     };
-  }, [selectors]);
+  }, [selectorKey]);
 
   return activeId;
 };
