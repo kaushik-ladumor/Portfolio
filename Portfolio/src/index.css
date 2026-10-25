@@ -190,6 +190,10 @@ main > section:not(#home) > div {
   box-shadow: 0 10px 28px -12px rgb(200 241 105 / 60%);
 }
 
+.resume-actions a {
+  white-space: nowrap;
+}
+
 .hero-portrait {
   background: #101411;
 }
@@ -383,7 +387,7 @@ a:focus-visible {
     backdrop-filter: blur(18px);
   }
 
-  .hero-actions a {
+  .hero-actions > a {
     max-width: 100%;
     padding-inline: 1rem;
   }

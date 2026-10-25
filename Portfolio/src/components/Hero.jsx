@@ -1,6 +1,6 @@
 import React from 'react';
 import { personalInfo } from '../data/portfolioData';
-import { ArrowRight, ArrowUpRight, Download } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Download, Eye } from 'lucide-react';
 
 const Hero = () => {
   return (
@@ -35,9 +35,17 @@ const Hero = () => {
             <a href={`mailto:${personalInfo.email}`} className="inline-flex min-h-12 w-full min-w-0 items-center justify-center gap-2 rounded-full border border-slate-700 px-6 font-semibold text-slate-200 transition-colors hover:border-orange-500/60 hover:text-orange-400 sm:w-auto">
               Let’s talk <ArrowUpRight size={17} />
             </a>
-            <a href={personalInfo.resumeUrl} download="Kaushik_Ladumor_Resume.pdf" className="inline-flex min-h-12 w-full min-w-0 items-center justify-center gap-2 rounded-full border border-slate-700 px-6 font-semibold text-slate-200 transition-colors hover:border-orange-500/60 hover:text-orange-400 sm:w-auto">
-              Download resume <Download size={16} />
-            </a>
+            <div className="resume-actions inline-flex min-h-12 w-fit max-w-full items-center overflow-hidden rounded-full border border-slate-700">
+              <span className="whitespace-nowrap pl-4 pr-2 text-sm font-semibold text-slate-200">Resume</span>
+              <span aria-hidden="true" className="h-6 w-px bg-slate-700" />
+              <a href={personalInfo.resumeUrl} download="Kaushik_Ladumor_Resume.pdf" aria-label="Download resume PDF" title="Download resume" className="inline-flex h-11 w-11 shrink-0 items-center justify-center text-slate-300 transition-colors hover:bg-slate-800 hover:text-orange-300">
+                <Download size={17} />
+              </a>
+              <span aria-hidden="true" className="h-6 w-px bg-slate-700" />
+              <a href={personalInfo.resumeUrl} target="_blank" rel="noopener noreferrer" aria-label="View resume PDF in a new tab" title="View resume" className="inline-flex h-11 w-11 shrink-0 items-center justify-center text-slate-300 transition-colors hover:bg-slate-800 hover:text-orange-300">
+                <Eye size={17} />
+              </a>
+            </div>
           </div>
         </div>
 
